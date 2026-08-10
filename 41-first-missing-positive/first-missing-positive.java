@@ -1,15 +1,25 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
-        int num=1;
-        Arrays.sort(nums);
-        HashSet<Integer> st=new HashSet<>();
-        for(int i=0;i<nums.length;i++){
-            st.add(nums[i]);
+        int i=0;
+        while(i<nums.length){
+            int correct=nums[i]-1;
+            if(nums[i]>0 && nums[i]<=nums.length && nums[i]!=nums[correct]){
+                swap(nums,i,correct);
+            }
+            else{
+                i++;
+            }
         }
-        while(num<=nums[nums.length-1]){
-            if(!st.contains(num))return num;
-            num++;
+        for(int index=0;index<nums.length;index++){
+            if(nums[index]!=index+1){
+                return index+1;
+            }
         }
-        return num;
+        return nums.length+1;
+    }
+    void swap(int nums[],int first,int second){
+        int temp=nums[first];
+        nums[first]=nums[second];
+        nums[second]=temp;
     }
 }
