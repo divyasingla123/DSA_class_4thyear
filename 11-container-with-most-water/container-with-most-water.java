@@ -5,9 +5,9 @@ class Solution {
         int right=n-1;
         int max=Integer.MIN_VALUE;
         for(int i=0;i<n;i++){
-            int w=right-left;
+            int width=right-left;
             int h=Math.min(height[left],height[right]);
-            int area=w*h;
+            int area=width*h;
             max=Math.max(max,area);
             if(height[left]<height[right])left++;
             else right--;
